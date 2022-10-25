@@ -9443,7 +9443,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4153514812416833701}
-  - component: {fileID: 8274182415581010613}
+  - component: {fileID: 230412639179089593}
+  - component: {fileID: 8558902302134801848}
+  - component: {fileID: 7897360896828132992}
   m_Layer: 0
   m_Name: DeadExplode
   m_TagString: Untagged
@@ -9468,7 +9470,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8274182415581010613
+--- !u!114 &230412639179089593
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9477,10 +9479,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 4153514812416599173}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e383fe105448b044a867031988819637, type: 3}
+  m_Script: {fileID: 11500000, guid: 049c5cdcc921461b8bf9fa496399e360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 3
+  damage: 4
+  damageScope: 16
+  ExplodeSpeed: 25
+--- !u!135 &8558902302134801848
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4153514812416599173}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &7897360896828132992
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4153514812416599173}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4153514812416599175
 GameObject:
   m_ObjectHideFlags: 0

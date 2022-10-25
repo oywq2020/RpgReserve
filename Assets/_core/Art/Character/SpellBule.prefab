@@ -19005,7 +19005,7 @@ GameObject:
   - component: {fileID: 5305783097620939464}
   - component: {fileID: 639464253}
   - component: {fileID: 433640920345327793}
-  - component: {fileID: 639464255}
+  - component: {fileID: -3959465435516592552}
   m_Layer: 0
   m_Name: SpellBule
   m_TagString: Untagged
@@ -19039,10 +19039,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5305783097620455144}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.29
+  m_Radius: 5.59
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &433640920345327793
 MonoBehaviour:
@@ -19059,7 +19059,7 @@ MonoBehaviour:
   speed: 0.3
   explodePreb: {fileID: 1597139595568364575, guid: a6cff1a4ee8f48e47bedfb947e3622c2,
     type: 3}
---- !u!54 &639464255
+--- !u!54 &-3959465435516592552
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -1,5 +1,8 @@
 ﻿using System;
+using _core.Scripts.Architectrue;
+using _core.Scripts.Event;
 using Cysharp.Threading.Tasks;
+using QFramework;
 using UnityEngine;
 
 namespace Player
@@ -12,19 +15,21 @@ namespace Player
         Run,
         Jump,
         Left,
-        Right
+        Right,
+        Win
     }
 
     interface IPlayer
     {
         //Provide injection interface 
         Action<PlayerState> OnStateChanged { get; set; }
+        AudioSource PlayerAuiSource { get; set; }
     }
 
     /// <summary>
     /// assemble all player physically behaviours 
     /// </summary>
-    public class PlayerController : MonoBehaviour, IPlayer
+    public class PlayerController : MonoBehaviour, IPlayer,IController
     {
         public float walkSpeed = 6f;
         public float runSpeed = 10f;
@@ -32,12 +37,15 @@ namespace Player
         public float jumpSpeed = 5f;
         public float gravity = 20f;
         public Crosshairs mCrosshairs;
+        
+       public AudioSource PlayerAuiSource { get; set; }
 
         private CharacterController _characterController;
         private Vector3 _moveDirection = Vector3.zero;
         private Camera _viewCamera;
         private PlayerState _currentState = PlayerState.Idle;
 
+        private bool _win = false;
         //provide a 
         public Action<PlayerState> OnStateChanged { get; set; }
 
@@ -45,12 +53,25 @@ namespace Player
         {
             _characterController = GetComponent<CharacterController>();
             _viewCamera = Camera.main;
+            
+            this.RegisterEvent<OnWin>(e =>
+            {
+                _win = true;
+                //Play wining animation
+                ChangeCurrentState(PlayerState.Win);
+                //change this character rotation to screen
+                transform.Rotate(Vector3.up,180);
+            });
+            PlayerAuiSource = GetComponent<AudioSource>();
         }
 
         private void Update()
         {
-            Movement();
-            MouseInput();
+            if (!_win)
+            {
+                Movement();
+                MouseInput();
+            }
         }
 
         // move and Jump
@@ -90,7 +111,6 @@ namespace Player
                 {
                     ChangeCurrentState(PlayerState.Idle);
                 }
-
                 //Run
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
@@ -101,7 +121,6 @@ namespace Player
                         tempSpeed = runSpeed;
                     }
                 }
-
                 //Jump
                 if (Input.GetButton("Jump"))
                 {
@@ -113,7 +132,6 @@ namespace Player
                 Quaternion angleAxis = Quaternion.AngleAxis(transform.eulerAngles.y, Vector3.up);
                 _moveDirection = angleAxis * _moveDirection;
             }
-
             _moveDirection.y -= gravity * Time.deltaTime;
             _characterController.Move(_moveDirection * tempSpeed * Time.deltaTime);
         }
@@ -121,7 +139,7 @@ namespace Player
         void MouseInput()
         {
             Ray ray = _viewCamera.ScreenPointToRay(Input.mousePosition);
-            Plane groundPlane = new Plane(Vector3.up, Vector3.up * 2);
+            Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
             float rayDistance;
             if (groundPlane.Raycast(ray, out rayDistance))
             {
@@ -143,10 +161,14 @@ namespace Player
             //change the current state and invoke this OnStateChanged Event
             if (!state.Equals(_currentState))
             {
-                Debug.Log(_currentState);
                 _currentState = state;
                 OnStateChanged?.Invoke(state);
             }
+        }
+
+        public IArchitecture GetArchitecture()
+        {
+            return RpgFramework.Interface;
         }
     }
 }

@@ -1,9 +1,5 @@
-﻿
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Cinemachine;
-using QFramework;
-
 namespace FreeLookCustom
 {
     [RequireComponent(typeof(CinemachineFreeLook))]
@@ -11,6 +7,9 @@ namespace FreeLookCustom
     {
         protected CinemachineFreeLook m_FreeLook;
         #region 在界面中更改的参数
+
+        public float mMaxScale =500f;
+        public float mMinScale = 80f;
         //视野和轨道的规格大小，可等比放大缩小范围
         [Range(0, 5000)] public float m_CameraScale;
         [Range(0, 100)] public int m_View;
@@ -29,7 +28,7 @@ namespace FreeLookCustom
             m_FreeLook.m_XAxis.m_MaxSpeed = 0;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             //change the view of camera
             if (!Input.GetAxis("Mouse ScrollWheel").Equals(0))
@@ -53,9 +52,15 @@ namespace FreeLookCustom
 
         void ListeningMouseWheel(float e)
         {
+            if (m_CameraScale<mMinScale||m_CameraScale>mMaxScale)
+            {
+                m_CameraScale = m_CameraScale <= mMinScale ? mMinScale : mMaxScale;
+                return;
+            }
+            
             if (e > 0)
             {
-                m_CameraScale -= Time.deltaTime * 5000;
+                m_CameraScale -= Time.deltaTime * 1000;
                 m_FreeLook.m_Orbits[1].m_Radius = m_CameraScale * (m_MidRadius / 50f);
                 m_FreeLook.m_Orbits[0].m_Radius = m_CameraScale * (m_TopRadius / 50f);
                 m_FreeLook.m_Orbits[2].m_Radius = m_CameraScale * (m_BottomRadius / 50f);
@@ -65,7 +70,7 @@ namespace FreeLookCustom
 
             if (e < 0)
             {
-                m_CameraScale += Time.deltaTime * 5000;
+                m_CameraScale += Time.deltaTime * 1000;
                 m_FreeLook.m_Orbits[1].m_Radius = m_CameraScale * (m_MidRadius / 50f);
                 m_FreeLook.m_Orbits[0].m_Radius = m_CameraScale * (m_TopRadius / 50f);
                 m_FreeLook.m_Orbits[2].m_Radius = m_CameraScale * (m_BottomRadius / 50f);

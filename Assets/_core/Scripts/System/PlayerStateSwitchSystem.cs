@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using _core.Scripts.Audio;
 using Cysharp.Threading.Tasks;
 using Player;
 using UnityEngine;
@@ -38,7 +39,6 @@ public class PlayerStateSwitchSystem : IStartable
                 break;
             case PlayerState.Run:
                 _animator._animator.Play("Run", 0, 1.5f);
-                Debug.Log("Run");
                 break;
             case PlayerState.Jump:
                 _animator._animator.Play("Jump", 0, 1.5f);
@@ -49,21 +49,33 @@ public class PlayerStateSwitchSystem : IStartable
             case PlayerState.Left:
                 _animator._animator.Play("Left", 0, 1.5f);
                 break;
+            case PlayerState.Win:
+                _animator._animator.Play("Win", 0,0.1f);
+                break;
         }
     }
 
     #endregion
-
     #region Weapon
-
     private async UniTask StartSpell()
     {
         _animator._animator.SetLayerWeight(1, 1);
         _animator._animator.Play("Attack", 1, 0.1f);
-       await UniTask.Delay(TimeSpan.FromSeconds(0.3));
-       _animator._animator.SetLayerWeight(1, 0.5f);
+        PlayPlayerSound(AudioBox.Instance.playerAttackClips[_weapon.SpellCount]);
+        await UniTask.Delay(TimeSpan.FromSeconds(0.3));
+       _animator._animator.SetLayerWeight(1, 0.2f); 
+       PlayWeaponSound(AudioBox.Instance.effectClips[0]);
     }
-
-    
     #endregion
+
+    void PlayWeaponSound(AudioClip clip)
+    {
+        _weapon.WeaponAudioSource.clip = clip;
+        _weapon.WeaponAudioSource.PlayScheduled(3);
+    }
+    void PlayPlayerSound(AudioClip clip)
+    {
+        _player.PlayerAuiSource.clip = clip;
+        _player.PlayerAuiSource.PlayOneShot(clip);
+    }
 }
