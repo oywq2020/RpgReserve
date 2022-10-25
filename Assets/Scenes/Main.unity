@@ -2449,7 +2449,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.047646668, y: 0.88933647, z: -0.4446681, w: -0.09529336}
+  m_LocalRotation: {x: -0.047646664, y: 0.8893364, z: -0.4446682, w: -0.09529332}
   m_LocalPosition: {x: -3.7307773, y: 6.47, z: 56.825394}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3264,7 +3264,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482874911}
-  m_LocalRotation: {x: -0.047646668, y: 0.88933647, z: -0.4446681, w: -0.09529336}
+  m_LocalRotation: {x: -0.047646675, y: 0.8893364, z: -0.4446682, w: -0.095293336}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5203,7 +5203,8 @@ MonoBehaviour:
   playerMoveClips: []
   monsterClips: []
   effectClips:
-  - {fileID: 8300000, guid: 5e3f9e4c9c55fab4eb29fe3609d3f99f, type: 3}
+  - {fileID: 8300000, guid: 64633c3f76dce97468803c08a8d315c6, type: 3}
+  - {fileID: 8300000, guid: d73e5e36601c78341b383c184428f242, type: 3}
 --- !u!4 &1540265957
 Transform:
   m_ObjectHideFlags: 0

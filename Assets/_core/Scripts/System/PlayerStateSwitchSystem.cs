@@ -65,13 +65,17 @@ public class PlayerStateSwitchSystem : IStartable
         await UniTask.Delay(TimeSpan.FromSeconds(0.3));
        _animator._animator.SetLayerWeight(1, 0.2f); 
        PlayWeaponSound(AudioBox.Instance.effectClips[0]);
+       
     }
     #endregion
 
     void PlayWeaponSound(AudioClip clip)
     {
         _weapon.WeaponAudioSource.clip = clip;
-        _weapon.WeaponAudioSource.PlayScheduled(3);
+        _player.PlayerAuiSource.Play();
+        _weapon.WeaponAudioSource.SetScheduledEndTime(AudioSettings.dspTime+0.8);
+        
+        // _weapon.WeaponAudioSource.PlayScheduled(0);
     }
     void PlayPlayerSound(AudioClip clip)
     {

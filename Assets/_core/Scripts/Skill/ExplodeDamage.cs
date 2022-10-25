@@ -1,10 +1,12 @@
 ﻿using System;
 using _core.Scripts.Abstract;
+using _core.Scripts.Audio;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace _core.Scripts.Skill
 {
+    [RequireComponent(typeof(AudioSource))]
     public class ExplodeDamage : MonoBehaviour
     {
         public float damage = 4;
@@ -18,6 +20,12 @@ namespace _core.Scripts.Skill
         {
             _sphereCollider = GetComponent<SphereCollider>();
             Explosion();
+            //Play explode audio
+            var audioSource = GetComponent<AudioSource>();
+            audioSource.clip = AudioBox.Instance.effectClips[1];
+            //audioSource.SetScheduledStartTime(AudioSettings.dspTime+1);
+            audioSource.PlayOneShot(audioSource.clip);
+           
         }
 
         private void OnTriggerEnter(Collider other)

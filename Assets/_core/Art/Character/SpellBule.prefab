@@ -19059,6 +19059,7 @@ MonoBehaviour:
   speed: 0.3
   explodePreb: {fileID: 1597139595568364575, guid: a6cff1a4ee8f48e47bedfb947e3622c2,
     type: 3}
+  _flightHeight: 1.5
 --- !u!54 &-3959465435516592552
 Rigidbody:
   m_ObjectHideFlags: 0
