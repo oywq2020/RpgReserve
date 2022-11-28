@@ -2449,7 +2449,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.047646664, y: 0.8893364, z: -0.4446682, w: -0.09529332}
+  m_LocalRotation: {x: -0.047646683, y: 0.88933647, z: -0.4446681, w: -0.09529339}
   m_LocalPosition: {x: -3.7307773, y: 6.47, z: 56.825394}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3264,7 +3264,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482874911}
-  m_LocalRotation: {x: -0.047646675, y: 0.8893364, z: -0.4446682, w: -0.095293336}
+  m_LocalRotation: {x: -0.04764668, y: 0.88933647, z: -0.4446681, w: -0.095293395}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10880,6 +10880,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1703364906}
+  - component: {fileID: 1703364907}
   m_Layer: 0
   m_Name: MonsterGenerator
   m_TagString: Untagged
@@ -10901,6 +10902,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1703364907
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703364905}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 85b57c311ddc8fe4494abb826f824c35, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1705347765
 PrefabInstance:
   m_ObjectHideFlags: 0
